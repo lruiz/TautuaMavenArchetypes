@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>${groupId}</groupId>
+        <artifactId>${artifactId}.project</artifactId>
+        <version>${version}</version>
+        <relativePath>../project/pom.xml</relativePath>
+    </parent>
+
+    <groupId>${groupId}</groupId>
+    <artifactId>${artifactId}.bundle</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>${artifactId}.bundle</name>
+
+    <properties>
+        <bundle.include.resource>{maven-resources}</bundle.include.resource>
+        <bundle.export.package>!*.impl;!*.internal; *.${project.artifactId}.*</bundle.export.package>
+        <bundle.import.package>${groupId}.*,
+            ${bundle.import.before.defaults},
+            ${bundle.import.defaults},
+            ${bundle.import.additional},
+            *
+        </bundle.import.package>
+        <bundle.exclude.dependencies>true</bundle.exclude.dependencies>
+        <bundle.export>${bundle.export.package};-noimport:=true</bundle.export>
+        <bundle.private.package>*.impl;*.internal;</bundle.private.package>
+        <bundle.export.version.policy>$&lt;range;[==,=+)></bundle.export.version.policy>
+        <bundle.import.before.defaults></bundle.import.before.defaults>
+        <bundle.import.version.policy>$&lt;range;[==,+)></bundle.import.version.policy>
+        <bundle.activator></bundle.activator>
+        <bundle.import>${bundle.import.package}</bundle.import>
+        <bundle.embed.dependency></bundle.embed.dependency>
+        <bundle.import.additional></bundle.import.additional>
+        <bundle.version>version=${project.version}</bundle.version>
+        <bundle.import.service></bundle.import.service>
+        <bundle.split.package>-split-package:=first</bundle.split.package>
+        <bundle.dynamic></bundle.dynamic>
+        <bundle.remove.headers>Ignore-Package,Include-Resource,Private-Package,Bundle-DocURL</bundle.remove.headers>
+        <bundle.symbolic.name>${project.artifactId}</bundle.symbolic.name>
+        <bundle.failok>false</bundle.failok>
+        <bundle.export.service></bundle.export.service>
+        <bundle.import.defaults></bundle.import.defaults>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.dependencymanager</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.dependencymanager.lambda</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <id>src-metadata</id>
+                        <goals>
+                            <goal>manifest</goal>
+                        </goals>
+                        <configuration>
+                            <supportIncrementalBuild>true</supportIncrementalBuild>
+                        </configuration>
+                    </execution>
+                </executions>
+                <inherited>true</inherited>
+                <configuration>
+                    <excludeDependencies>${bundle.exclude.dependencies}</excludeDependencies>
+                    <instructions>
+                        <Bundle-Name>${project.name}</Bundle-Name>
+                        <Bundle-SymbolicName>${bundle.symbolic.name}</Bundle-SymbolicName>
+                        <Bundle-Vendor>Tautua</Bundle-Vendor>
+                        <Bundle-Activator>${bundle.activator}</Bundle-Activator>
+                        <Export-Package>${bundle.export}</Export-Package>
+                        <Import-Package>${bundle.import}</Import-Package>
+                        <Private-Package>${bundle.private.package}</Private-Package>
+                        <Implementation-Title>Tautua Umayux</Implementation-Title>
+                        <Implementation-Version>${project.version}</Implementation-Version>
+                        <Include-Resource>${bundle.include.resource}</Include-Resource>
+                        <Embed-Dependency>${bundle.embed.dependency}</Embed-Dependency>
+                        <_removeheaders>${bundle.remove.headers}</_removeheaders>
+                        <_failok>${bundle.failok}</_failok>
+                        <_consumer-policy>${bundle.import.version.policy}</_consumer-policy>
+                        <_provider-policy>${bundle.export.version.policy}</_provider-policy>
+                        <Export-Service>${bundle.export.service}</Export-Service>
+                        <Import-Service>${bundle.import.service}</Import-Service>
+                        <Require-Capability>${bundle.require.capability}</Require-Capability>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
