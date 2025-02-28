@@ -1,5 +1,10 @@
 # Tautua Project Archetype
 
+This Maven archetype is designed to generate a standardized multi-module project structure that adheres to best 
+practices for modularity, dependency management, and build consistency. The generated project follows a well-defined 
+hierarchy and leverages key Maven concepts such as Corporate POMs, Bill of Materials (BOM), Reactor POMs, 
+and module types to ensure scalability, maintainability, and reusability.
+
 ![pom model](./pom_model.svg)
 
 A **Corporate POM** or **Super POM** is a special type of POM file that serves as a parent POM for all Maven projects 
@@ -18,7 +23,8 @@ with a single command.
 
 A **Project POM** (TODO)
 
-A **ModuleType POM** (TODO)
+A **ModuleType POM** provides predefined module templates for common use cases, ensuring consistency in module 
+structure and configuration. For example a template for a Domain module, or a RestService module.
 
 A **Module** (TODO)
 
