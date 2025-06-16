@@ -29,7 +29,7 @@ under the License.
             <defaultValue>${groupId.replaceAll('-','.')}.${artifactId.replaceAll('-','.')}</defaultValue>
         </requiredProperty>
         <requiredProperty key="java_version">
-            <defaultValue>11</defaultValue>
+            <defaultValue>17</defaultValue>
             <validationRegex>^([89])$|^(1[0-9])$</validationRegex>
         </requiredProperty>
     </requiredProperties>

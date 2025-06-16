@@ -7,7 +7,7 @@ project {
     }
     groupId 'org.tautua.archetypes'
     artifactId 'project.archetype'
-    version '1.0-SNAPSHOT'
+    version '1.0.0-SNAPSHOT'
     packaging 'maven-archetype'
 
     url 'http://www.example.com'
