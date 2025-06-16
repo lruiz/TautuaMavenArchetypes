@@ -25,12 +25,12 @@ a single build process. It is responsible for orchestrating the build order of t
 that all modules are built in the correct order, based on their dependencies, and allows you to build all modules 
 with a single command.
 
-A **Project POM** (TODO)
+A **Project POM** Defines project-wide settings and metadata.
 
 A **ModuleType POM** provides predefined module templates for common use cases, ensuring consistency in module 
 structure and configuration. For example a template for a Domain module, or a RestService module.
 
-A **Module** These are a specific module implementation of a domain, utility libs, etc. 
+A **Module** Defines module-specific dependencies with minimal configuration if defined with a ModuleType can be even leaner. 
 
 ## Usage
 To generate a project using this archetype, run the following Maven command:
